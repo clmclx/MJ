@@ -24,7 +24,7 @@ const areArraysEqual = (firstArray: any[], secondArray: any[]) => {
 }
 
 const areVotedMentionsValid = (vote: Vote, poll: Poll) => {
-    return Object.values(vote.votedMentions).every((mention: string)=> poll.mentions.indexOf(mention) >-1);
+    return Object.values(vote.votedMentions).every((votedMention: string)=> poll.mentions.findIndex((mention:Mention)=> mention.name==votedMention)>-1);
 }
 
 

@@ -35,10 +35,46 @@ const candidateSubset = [
     "Francois Xavier Bellamy (LR)",
     "Jordan Bardella (RN)",
 ]
+const tresBien: Mention = {
+    name: "tres bien",
+    value: 6,
 
-const mentions = ["tres bien", "bien", "assez bien", "passable", "insuffisant", "a rejeter"]
+}
 
-const voters = ["Clement", "Doud", "Maya"]
+const bien: Mention = {
+    name: "bien",
+    value: 5,
+
+}
+
+const assezBien: Mention = {
+    name: "assez bien",
+    value: 4,
+
+}
+
+const passable: Mention = {
+    name: "passable",
+    value: 3,
+
+}
+
+const insuffisant: Mention = {
+    name: "insuffisant",
+    value: 2,
+
+}
+
+const aRejeter: Mention = {
+    name: "a rejeter",
+    value: 1,
+
+}
+
+
+const mentions = [tresBien, bien, assezBien, passable, insuffisant, aRejeter]
+
+const voters = ["Alain", "Bernard", "Gertrude"]
 
 const européennes: Poll = LocalPollRepository.createPoll(electionName,candidateSubset, mentions,voters,
  new Date(),
@@ -46,9 +82,9 @@ const européennes: Poll = LocalPollRepository.createPoll(electionName,candidate
 
 
 
-const voteClement: Vote = {
+const voteAlain: Vote = {
     pollId: européennes.id,
-    userId: "Clement",
+    userId: "Alain",
     votedMentions: {
         "Manon Aubry (LFI)": "a rejeter",
         "Selma Labib (NPA)": "a rejeter",
@@ -60,9 +96,9 @@ const voteClement: Vote = {
     }
 }
 
-const voteDoud: Vote = {
+const voteBernard: Vote = {
     pollId: européennes.id,
-    userId: "Doud",
+    userId: "Bernard",
     votedMentions: {
         "Manon Aubry (LFI)": "bien",
         "Selma Labib (NPA)": "a rejeter",
@@ -74,9 +110,9 @@ const voteDoud: Vote = {
     }
 }
 
-const voteMaya: Vote = {
+const voteGertrude: Vote = {
     pollId: européennes.id,
-    userId: "Maya",
+    userId: "Gertrude",
     votedMentions: {
         "Manon Aubry (LFI)": "a rejeter",
         "Selma Labib (NPA)": "a rejeter",
@@ -89,11 +125,13 @@ const voteMaya: Vote = {
 }
 
 
-LocalPollRepository.addVoteToPoll(européennes, voteClement)
-LocalPollRepository.addVoteToPoll(européennes, voteDoud)
-LocalPollRepository.addVoteToPoll(européennes, voteMaya)
+LocalPollRepository.addVoteToPoll(européennes, voteAlain)
+LocalPollRepository.addVoteToPoll(européennes, voteBernard)
+LocalPollRepository.addVoteToPoll(européennes, voteGertrude)
 
-const results: CandidateResults[] = LocalPollRepository.getPollResult(européennes)
+
+
+const results: Record<string, MentionResult[]> = LocalPollRepository.getPollResult(européennes)
 
 
 
